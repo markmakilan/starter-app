@@ -1,4 +1,4 @@
-<div>
+<div x-data="navbar">
     <div
         class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 bg-white px-4 sm:gap-x-6 sm:px-6 lg:px-8">
         <button type="button" class="-m-2.5 p-2.5 text-gray-700" x-on:click="toggleSidebar">
@@ -13,7 +13,7 @@
             <form class="relative flex flex-1" action="#" method="GET"></form>
             <div class="flex items-center gap-x-4 lg:gap-x-6">
                 <!-- Profile dropdown -->
-                <div class="relative" x-data="{ dropdown: false, toggleDropdown() { this.dropdown = !this.dropdown } }">
+                <div class="relative">
                     <button 
                         type="button" 
                         class="-m-1.5 flex items-center p-1.5" 
@@ -46,7 +46,6 @@
                         x-transition:leave="transition ease-out duration-100"
                         x-transition:leave-start="transform opacity-100 scale-100"
                         x-transition:leave-end="transform opacity-0 scale-95">
-                        <!-- Active: "bg-gray-50", Not Active: "" -->
                         <a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-gray-100" role="menuitem"
                             tabindex="-1" id="user-menu-item-0">Your profile</a>
                         <a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-gray-100" role="menuitem"
@@ -56,4 +55,16 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('navbar', () => ({
+                dropdown: false, 
+                
+                toggleDropdown() { 
+                    this.dropdown = !this.dropdown 
+                }
+            }))
+        })
+    </script>
 </div>

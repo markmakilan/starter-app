@@ -1,10 +1,10 @@
 <div x-data="main">
     @livewire('layout.admin.sidebar')
 
-    <div x-bind:class="sidebar ? 'pl-64' : 'pl-[72px]'">
+    <div class="flex flex-col h-screen" x-bind:class="sidebar ? 'pl-64' : 'pl-[72px]'">
         @livewire('layout.admin.navbar')
 
-        <main class="px-4 sm:px-6 lg:px-8 py-5">
+        <main class="flex-1 px-4 sm:px-6 lg:px-8 py-5 overflow-y-scroll scroll-bar">
             @yield('content')
         </main>
     </div>
