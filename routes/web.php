@@ -24,3 +24,7 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 require __DIR__.'/auth.php';
+
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::get('/dashboard', App\Livewire\Pages\Admin\Dashboard\Index::class)->name('admin.dashboard');
+});
