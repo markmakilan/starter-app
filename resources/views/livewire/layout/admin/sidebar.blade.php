@@ -30,9 +30,7 @@
                 <!-- Sidebar component, swap this element with another sidebar if you like -->
                 <div class="flex flex-col gap-y-5 overflow-y-auto bg-gray-900 px-4 pb-4 ring-1 ring-white/10 w-[72px]">
                     <div class="flex h-16 shrink-0 items-center">
-                        <img class="h-8 w-auto"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                            alt="Your Company">
+                        <x-application-logo class="h-8 w-auto mx-auto fill-current text-gray-500" />
                     </div>
                     <nav class="flex flex-1 flex-col">
                         <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -40,8 +38,12 @@
                                 <ul role="list" class="space-y-1">
                                     <li>
                                         <!-- Current: "bg-gray-800 text-white", Default: "text-gray-400 hover:text-white hover:bg-gray-800" -->
-                                        <a href="#"
-                                            class="bg-gray-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                        <a 
+                                            wire:navigate href="/admin/dashboard"
+                                            @class([
+                                                'group flex gap-x-3 rounded-md p-2 text-sm text-gray-400 leading-6 font-semibold hover:text-white hover:bg-gray-800', 
+                                                'bg-gray-800 text-white' => $current_route_name == 'admin.dashboard'
+                                            ])>
                                             <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -50,8 +52,12 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#"
-                                            class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                        <a 
+                                            wire:navigate href="/admin/user"
+                                            @class([
+                                                'group flex gap-x-3 rounded-md p-2 text-sm text-gray-400 leading-6 font-semibold hover:text-white hover:bg-gray-800', 
+                                                'bg-gray-800 text-white' => $current_route_name == 'admin.user'
+                                            ])>
                                             <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -93,8 +99,7 @@
             x-transition:leave-start="translate-x-0"
             x-transition:leave-end="-translate-x-full">
             <div class="flex h-16 shrink-0 items-center">
-                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company">
+                <x-application-logo class="h-6 w-6 fill-current text-gray-500" />
             </div>
             <nav class="flex flex-1 flex-col">
                 <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -102,8 +107,12 @@
                         <ul role="list" class="-mx-2 space-y-1">
                             <li>
                                 <!-- Current: "bg-gray-800 text-white", Default: "text-gray-400 hover:text-white hover:bg-gray-800" -->
-                                <a href="#"
-                                    class="bg-gray-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                <a 
+                                    wire:navigate href="/admin/dashboard"
+                                    @class([
+                                        'group flex gap-x-3 rounded-md p-2 text-sm text-gray-400 leading-6 font-semibold hover:text-white hover:bg-gray-800', 
+                                        'bg-gray-800 text-white' => $current_route_name == 'admin.dashboard'
+                                    ])>
                                     <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                         stroke="currentColor" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -113,8 +122,12 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#"
-                                    class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                <a 
+                                    wire:navigate href="/admin/user"
+                                    @class(['
+                                        group flex gap-x-3 rounded-md p-2 text-sm text-gray-400 leading-6 font-semibold hover:text-white hover:bg-gray-800',
+                                        'bg-gray-800 text-white' => $current_route_name == 'admin.user'
+                                    ])>
                                     <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                         stroke="currentColor" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round"
