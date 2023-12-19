@@ -1,16 +1,12 @@
 <div x-data="navbar">
-    <div
-        class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 bg-white px-4 sm:gap-x-6 sm:px-6 lg:px-8">
+    <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 px-4 sm:gap-x-6 sm:px-6 lg:px-8">
         <button type="button" class="-m-2.5 p-2.5 text-gray-700" x-on:click="toggleSidebar">
             <span class="sr-only">Open sidebar</span>
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
+            <x-icon.menu class="w-6 h-6" stroke="currentColor" />
         </button>
 
         <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-            <form class="relative flex flex-1" action="#" method="GET"></form>
+            <div class="flex-1"></div>
             <div class="flex items-center gap-x-4 lg:gap-x-6">
                 <!-- Profile dropdown -->
                 <div class="relative">
@@ -22,15 +18,13 @@
                         aria-haspopup="true"
                         x-on:click="toggleDropdown">
                         <span class="sr-only">Open user menu</span>
-                        <span class="hidden lg:flex lg:items-center">
-                            <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">{{ $name }}</span>
-                            <svg class="ml-2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"
-                                aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                    clip-rule="evenodd" />
-                            </svg>
+                        <span class="hidden md:flex md:items-center">
+                            <span class="ml-4 text-sm font-semibold leading-6 text-gray-700" aria-hidden="true">{{ $name }}</span>
+                            <x-icon.caret-down class="ml-2 h-4 w-4 text-gray-700" fill="currentColor" />
                         </span>
+                        <div class="block md:hidden">
+                            <x-icon.ellipsis-v class="w-4 h-4 text-gray-700" fill="currentColor" />
+                        </div>
                     </button>
                     <div 
                         class="absolute right-0 z-10 mt-4 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
