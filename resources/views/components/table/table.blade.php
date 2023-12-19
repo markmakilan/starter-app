@@ -1,0 +1,7 @@
+<div class="overflow-x-auto scroll-bar">
+    <div class="inline-block min-w-full align-middle">
+        <table class="min-w-full divide-y divide-gray-300">
+            {{ $slot }}
+        </table>
+    </div>
+</div>

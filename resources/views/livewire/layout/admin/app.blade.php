@@ -1,7 +1,7 @@
 <div x-data="main">
     @livewire('layout.admin.sidebar')
 
-    <div class="flex flex-col h-screen" x-bind:class="sidebar ? 'pl-64' : 'pl-[72px]'">
+    <div class="flex flex-col h-screen" x-bind:class="{'pl-64': sidebar, 'pl-[72px]': !sidebar}">
         @livewire('layout.admin.navbar')
 
         <main class="flex-1 px-4 sm:px-6 lg:px-8 py-5 overflow-y-scroll scroll-bar">
