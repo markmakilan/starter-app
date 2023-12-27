@@ -1,7 +1,8 @@
 <div>
     <x-slider.slider name="{{ $slider }}">
-        <x-slot name="title">New User</x-slot>
+        <x-slot name="title">Edit User</x-slot>
         <x-slot name="content">
+            @isset($user)
             <div class="space-y-3 py-3">
                 <div class="space-y-0.5">
                     <x-label.label>First Name</x-label.label>
@@ -36,18 +37,22 @@
                     @enderror
                 </div>
                 <div class="space-y-0.5">
-                    <x-label.label>Password</x-label.label>
-                    <x-input.input type="password" wire:model="user.password" />
+                    <x-label.label>Status</x-label.label>
+                    <x-input.select wire:model="user.status">
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </x-input.select>
                     
-                    @error('user.password')
+                    @error('user.user')
                     <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
+            @endisset
         </x-slot>
         <x-slot name="action">
             <x-button.secondary x-on:click="{{ $slider }} = false">Cancel</x-button.primary>
-            <x-button.primary wire:click="save">Save</x-button.primary>
+            <x-button.primary wire:click="save">Save Changes</x-button.primary>
         </x-slot>
     </x-slider.slider>
 </div>

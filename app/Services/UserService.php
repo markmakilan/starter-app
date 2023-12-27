@@ -19,4 +19,19 @@ class UserService
             return ['status' => 500, 'error' => $e->getMessage()];
         }
     }
+
+    public function update($data)
+    {
+        try {
+            $result = DB::transaction(function () use ($data) {
+                $user = User::find($data['id']);
+                
+                return ['user' => $user ? $user->update($data) : false];
+            });
+
+            return ['status' => 200, 'data' => $result];
+        } catch (\Exception $e) {
+            return ['status' => 500, 'error' => $e->getMessage()];
+        }
+    }
 }

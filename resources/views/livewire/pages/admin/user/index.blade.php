@@ -43,16 +43,27 @@
                         <x-table.th>Created Date</x-table.th>
                         <x-table.th>Last Updated</x-table.th>
                         <x-table.th>Status</x-table.th>
+                        <x-table.th>Action</x-table.th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($data as $user)
-                    <tr>
+                    <tr class="hover:bg-gray-50">
                         <x-table.td class="font-medium text-gray-900">{{ $user->fullName() }}</x-table.td>
                         <x-table.td>{{ $user->email }}</x-table.td>
                         <x-table.td>{{ $user->created_at }}</x-table.td>
                         <x-table.td>{{ $user->updated_at }}</x-table.td>
-                        <x-table.td class="capitalize">{{ $user->status() }}</x-table.td>
+                        <x-table.td>
+                            <span @class(['capitalize text-xs text-gray-100 rounded-full px-2 py-0.5', 'bg-green-700' => $user->status() == 'active', 'bg-red-700' => $user->status() == 'inactive'])>
+                                {{ $user->status() }}
+                            </span>
+                        </x-table.td>
+                        <x-table.td>
+                            <div class="flex gap-2">
+                                <span class="cursor-pointer text-blue-700 hover:text-blue-900" wire:click="$dispatch('edit-user', { user: {{ $user->id }} })" x-on:click="edit_user_slider = true">Edit</span>
+                                <span class="cursor-pointer text-red-700 hover:text-red-900">Delete</span>
+                            </div>
+                        </x-table.td>
                     </tr>
                     @empty
                     <tr>
@@ -71,11 +82,13 @@
     </div>
     
     @livewire('pages.admin.user.sliders.create', ['slider' => 'add_user_slider'])
+    @livewire('pages.admin.user.sliders.edit', ['slider' => 'edit_user_slider'])
 
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('data', () => ({
                 add_user_slider: false,
+                edit_user_slider: false,
             }))
         })
     </script>
