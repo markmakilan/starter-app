@@ -8,7 +8,7 @@ use App\Models\User;
 class Index extends Component
 {
     use WithPagination;
-    
+
     public $filters = [
         'search' => null,
         'status' => null,
