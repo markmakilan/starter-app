@@ -2,11 +2,13 @@
 
 namespace App\Livewire\Pages\Admin\User;
 
-use Livewire\Component;
+use Livewire\{Component, WithPagination};
 use App\Models\User;
 
 class Index extends Component
 {
+    use WithPagination;
+    
     public $filters = [
         'search' => null,
         'status' => null,

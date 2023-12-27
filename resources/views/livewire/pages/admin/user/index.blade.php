@@ -61,6 +61,12 @@
                     @endforelse
                 </tbody>
             </x-table.table>
+
+            @if ($data->hasPages())
+            <div class="p-3">
+                {{ $data->links() }}
+            </div>
+            @endif
         </x-ui.card>
     </div>
     
