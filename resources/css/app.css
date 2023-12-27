@@ -8,8 +8,8 @@
 }
 
 .scrollbar::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
 }
 
 .scrollbar::-webkit-scrollbar-track-piece {
@@ -19,7 +19,6 @@
 .scrollbar::-webkit-scrollbar-thumb:vertical {
     height: 20px;
     background-color: #cbd5e0;
-    border-radius: 10px;
 }
 
 .scrollbar::-webkit-scrollbar-thumb:vertical:hover {
@@ -29,7 +28,6 @@
 .scrollbar::-webkit-scrollbar-thumb:horizontal {
     height: 20px;
     background-color: #cbd5e0;
-    border-radius: 10px;
 }
 
 .scrollbar::-webkit-scrollbar-thumb:horizontal:hover {
