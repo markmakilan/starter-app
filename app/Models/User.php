@@ -18,7 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'family_name',
+        'given_name',
+        'middle_name',
         'email',
         'password',
         'status',
@@ -46,5 +48,9 @@ class User extends Authenticatable
 
     public function fullName() {
         return $this->given_name . ' ' . $this->family_name;
+    }
+
+    public function status() {
+        return $this->status == true ? 'active' : 'inactive';
     }
 }

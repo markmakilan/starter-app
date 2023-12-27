@@ -1,4 +1,4 @@
-<div>
+<div x-data="data">
     <div class="flex flex-col items-baseline mb-1 justify-between">
         <x-label.title>Users</x-label.title>
         <div class="flex items-center gap-2">
@@ -13,7 +13,7 @@
             <x-div.grid-col class="md:col-span-4">
                 <x-div.flexbox class="relative">
                     <x-icon.search class="w-4 h-4 absolute left-3 text-gray-700" stroke="currentColor" />
-                    <x-input.input class="pl-9" />
+                    <x-input.input class="pl-9" wire:model.live="filters.search" />
                 </x-div.flexbox>
             </x-div.grid-col>
             <x-div.grid-col class="md:col-span-2">
@@ -22,28 +22,55 @@
                 </x-input.select>
             </x-div.grid-col>
             <x-div.grid-col class="md:col-span-2">
-                <x-input.select>
+                <x-input.select wire:model.live="filters.status">
                     <option value="" selected hidden>Status</option>
+                    <option value="0">All</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
                 </x-input.select>
             </x-div.grid-col>
             <x-div.grid-col class="md:col-span-2">
-                <x-button.primary class="w-full">New</x-button.primary>
+                <x-button.primary class="w-full" x-on:click="add_user_slider = true">New</x-button.primary>
             </x-div.grid-col>
         </x-div.grid>
 
-        <x-ui.card class="p-0">
+        <x-ui.card>
             <x-table.table>
                 <thead>
                     <tr>
                         <x-table.th>Name</x-table.th>
+                        <x-table.th>Email</x-table.th>
+                        <x-table.th>Created Date</x-table.th>
+                        <x-table.th>Last Updated</x-table.th>
+                        <x-table.th>Status</x-table.th>
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse ($data as $user)
                     <tr>
-                        <x-table.td>Juan Dela Cruz</x-table.td>
+                        <x-table.td class="font-medium text-gray-900">{{ $user->fullName() }}</x-table.td>
+                        <x-table.td>{{ $user->email }}</x-table.td>
+                        <x-table.td>{{ $user->created_at }}</x-table.td>
+                        <x-table.td>{{ $user->updated_at }}</x-table.td>
+                        <x-table.td class="capitalize">{{ $user->status() }}</x-table.td>
                     </tr>
+                    @empty
+                    <tr>
+                        <x-table.td>No data available</x-table.td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </x-table.table>
         </x-ui.card>
     </div>
+    
+    @livewire('pages.admin.user.sliders.create', ['slider' => 'add_user_slider'])
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('data', () => ({
+                add_user_slider: false,
+            }))
+        })
+    </script>
 </div>
