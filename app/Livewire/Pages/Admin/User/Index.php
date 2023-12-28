@@ -19,6 +19,11 @@ class Index extends Component
         'delete_user_modal' => false,
     ];
 
+    public function updatedFilters()
+    {
+        $this->resetPage();
+    }
+
     public function edit($uuid) 
     {
         $user = User::where('uuid', $uuid);
