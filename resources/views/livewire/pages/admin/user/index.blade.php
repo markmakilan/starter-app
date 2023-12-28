@@ -17,11 +17,6 @@
                 </x-div.flexbox>
             </x-div.grid-col>
             <x-div.grid-col class="md:col-span-2">
-                <x-input.select>
-                    <option value="" selected hidden>Role</option>
-                </x-input.select>
-            </x-div.grid-col>
-            <x-div.grid-col class="md:col-span-2">
                 <x-input.select wire:model.live="filters.status">
                     <option value="" selected hidden>Status</option>
                     <option value="0">All</option>
