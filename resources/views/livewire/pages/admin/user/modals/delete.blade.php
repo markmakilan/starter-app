@@ -6,7 +6,7 @@
                     account</h3>
                 @isset($user)
                 <div class="mt-2">
-                    <p class="text-sm text-gray-500">Are you sure you want to deactivate <span class="font-semibold">{{ $user->fullName() }}</span> account? All of its data will be permanently removed.</p>
+                    <p class="text-sm text-gray-500">Are you sure you want to deactivate <span class="font-semibold">{{ $user['given_name'] }}</span> account? All of its data will be permanently removed.</p>
                 </div>
                 @endisset
             </div>

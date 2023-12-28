@@ -3,10 +3,9 @@
 namespace App\Livewire\Pages\Admin\User\Sliders;
 
 use Livewire\Component;
-use Livewire\Attributes\{Validate, On};
+use Livewire\Attributes\On;
 use Illuminate\Validation\Rule;
 use App\Services\UserService;
-use App\Models\User;
 
 class Edit extends Component
 {
@@ -37,12 +36,11 @@ class Edit extends Component
     }
 
     #[On('edit-user')]
-    public function user(User $user)
+    public function user($user)
     {
-        $this->user = $user->toArray();
+        $this->user = $user;
     }
     
-
     public function save(UserService $service)
     {
         $this->validate();
@@ -50,7 +48,7 @@ class Edit extends Component
         $response = $service->update($this->user);
 
         if ($response['status'] === 200) {
-            $this->redirect('/admin/user', navigate: true); 
+            $this->redirect('/admin/user'); 
         }
     }
 

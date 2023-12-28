@@ -5,7 +5,8 @@
     aria-labelledby="slide-over-title" 
     role="dialog" 
     aria-modal="true"
-    x-show="{{ $name }}">
+    x-show="{{ $name }}"
+    style="display: none;">
     <div 
         class="fixed inset-0 bg-black bg-opacity-50"
         x-transition:enter="ease-out duration-500" 
@@ -14,7 +15,8 @@
         x-transition:leave="ease-in-out duration-500"
         x-transition:leave-start="opacity-100" 
         x-transition:leave-end="opacity-0" 
-        x-show="{{ $name }}"></div>
+        x-show="{{ $name }}"
+        style="display: none;"></div>
 
     <div class="fixed inset-0 overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
@@ -22,6 +24,7 @@
                 <div 
                     class="pointer-events-auto w-screen md:max-w-sm"
                     x-show="{{ $name }}"
+                    style="display: none;"
                     x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
                     x-transition:enter-start="translate-x-full" 
                     x-transition:enter-end="translate-x-0"

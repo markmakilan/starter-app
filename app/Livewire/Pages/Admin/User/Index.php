@@ -13,6 +13,31 @@ class Index extends Component
         'search' => null,
         'status' => null,
     ];
+
+    public $components = [
+        'edit_user_slider' => false,
+        'delete_user_modal' => false,
+    ];
+
+    public function edit($uuid) 
+    {
+        $user = User::where('uuid', $uuid);
+        
+        if ($user->count() == 1) {
+            $this->dispatch('edit-user', user: $user->first());
+            $this->components['edit_user_slider'] = true;
+        }
+    }
+
+    public function delete($uuid) 
+    {
+        $user = User::where('uuid', $uuid);
+        
+        if ($user->count() == 1) {
+            $this->dispatch('delete-user', user: $user->first());
+            $this->components['delete_user_modal'] = true;
+        }
+    }
     
     public function users() 
     {

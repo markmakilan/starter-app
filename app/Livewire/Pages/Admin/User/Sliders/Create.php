@@ -43,7 +43,7 @@ class Create extends Component
         $response = $service->store($this->user);
 
         if ($response['status'] === 200) {
-            $this->redirect('/admin/user', navigate: true); 
+            $this->redirect('/admin/user'); 
         }
     }
 

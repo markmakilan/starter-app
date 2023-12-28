@@ -39,7 +39,7 @@
                                     <li>
                                         <!-- Current: "bg-gray-800 text-white", Default: "text-gray-500 hover:text-white hover:bg-gray-800" -->
                                         <a 
-                                            wire:navigate href="/admin/dashboard"
+                                            href="/admin/dashboard"
                                             @class([
                                                 'group flex gap-x-3 rounded-md p-2 text-sm text-gray-500 leading-6 font-semibold hover:text-white hover:bg-gray-800', 
                                                 'bg-gray-800 text-white' => $current_route_name == 'admin.dashboard'
@@ -49,7 +49,7 @@
                                     </li>
                                     <li>
                                         <a 
-                                            wire:navigate href="/admin/user"
+                                            href="/admin/user"
                                             @class([
                                                 'group flex gap-x-3 rounded-md p-2 text-sm text-gray-500 leading-6 font-semibold hover:text-white hover:bg-gray-800', 
                                                 'bg-gray-800 text-white' => $current_route_name == 'admin.user'
@@ -79,7 +79,7 @@
     </div>
 
     <!-- Static sidebar for desktop -->
-    <div class="fixed inset-y-0 z-50 flex w-64 flex-col" x-show="sidebar">
+    <div class="fixed inset-y-0 z-50 flex w-64 flex-col" x-show="sidebar" style="display: none;">
         <!-- Sidebar component, swap this element with another sidebar if you like -->
         <div 
             class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 rounded-md ml-1 my-1"
@@ -100,7 +100,7 @@
                             <li>
                                 <!-- Current: "bg-gray-800 text-white", Default: "text-gray-500 hover:text-white hover:bg-gray-800" -->
                                 <a 
-                                    wire:navigate href="/admin/dashboard"
+                                    href="/admin/dashboard"
                                     @class([
                                         'group flex gap-x-3 rounded-md p-2 text-sm text-gray-500 leading-6 font-semibold hover:text-white hover:bg-gray-800', 
                                         'bg-gray-800 text-white' => $current_route_name == 'admin.dashboard'
@@ -111,7 +111,7 @@
                             </li>
                             <li>
                                 <a 
-                                    wire:navigate href="/admin/user"
+                                    href="/admin/user"
                                     @class(['
                                         group flex gap-x-3 rounded-md p-2 text-sm text-gray-500 leading-6 font-semibold hover:text-white hover:bg-gray-800',
                                         'bg-gray-800 text-white' => $current_route_name == 'admin.user'
