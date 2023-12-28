@@ -13,7 +13,7 @@
             <x-div.grid-col class="md:col-span-4">
                 <x-div.flexbox class="relative">
                     <x-icon.search class="w-4 h-4 absolute left-3 text-gray-700" stroke="currentColor" />
-                    <x-input.input class="pl-9" wire:model.live="filters.search" />
+                    <x-input.input class="pl-9" wire:model.live.debounce.250ms="filters.search" />
                 </x-div.flexbox>
             </x-div.grid-col>
             <x-div.grid-col class="md:col-span-2">
