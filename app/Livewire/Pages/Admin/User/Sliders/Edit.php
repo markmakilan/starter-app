@@ -41,7 +41,7 @@ class Edit extends Component
         $this->user = $user;
     }
     
-    public function save(UserService $service)
+    public function update(UserService $service)
     {
         $this->validate();
         

@@ -52,7 +52,7 @@
         </x-slot>
         <x-slot name="action">
             <x-button.secondary x-on:click="{{ $slider }} = false">Cancel</x-button.primary>
-            <x-button.primary wire:click="save">Save Changes</x-button.primary>
+            <x-button.primary wire:click="update">Save Changes</x-button.primary>
         </x-slot>
     </x-slider.slider>
 </div>
