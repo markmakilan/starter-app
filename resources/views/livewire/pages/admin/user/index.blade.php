@@ -60,8 +60,8 @@
                         </x-table.td>
                         <x-table.td>
                             <div class="flex gap-2">
-                                <span class="cursor-pointer text-blue-700 hover:text-blue-900" wire:click="$dispatch('edit-user', { user: {{ $user->id }} })" x-on:click="edit_user_slider = true">Edit</span>
-                                <span class="cursor-pointer text-red-700 hover:text-red-900">Delete</span>
+                                <span class="cursor-pointer text-blue-700 hover:text-blue-900" wire:click="$dispatch('edit-user', { user: '{{ $user->uuid }}' })" x-on:click="edit_user_slider = true">Edit</span>
+                                <span class="cursor-pointer text-red-700 hover:text-red-900" wire:click="$dispatch('delete-user', { user: '{{ $user->uuid }}' })" x-on:click="delete_user_modal = true">Delete</span>
                             </div>
                         </x-table.td>
                     </tr>
@@ -83,12 +83,14 @@
     
     @livewire('pages.admin.user.sliders.create', ['slider' => 'add_user_slider'])
     @livewire('pages.admin.user.sliders.edit', ['slider' => 'edit_user_slider'])
+    @livewire('pages.admin.user.modals.delete', ['modal' => 'delete_user_modal'])
 
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('data', () => ({
                 add_user_slider: false,
                 edit_user_slider: false,
+                delete_user_modal: false,
             }))
         })
     </script>
