@@ -13,7 +13,7 @@
         </x-slot>
         <x-slot name="action">
             <x-button.secondary x-on:click="{{ $modal }} = false">Cancel</x-button.primary>
-            <x-button.danger wire:click="delete">Deactivate</x-button.danger>
+            <x-button.danger wire:click="delete" target="delete">Deactivate</x-button.danger>
        </x-slot>
     </x-modal.modal>
 </div>
