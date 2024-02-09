@@ -20,7 +20,7 @@ $login = function () {
 
     $this->redirect(
         session('url.intended', RouteServiceProvider::HOME),
-        navigate: true
+        navigate: false
     );
 };
 

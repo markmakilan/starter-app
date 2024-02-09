@@ -75,10 +75,10 @@
             @endif
         </x-ui.card>
     </div>
-    
-    @livewire('pages.admin.user.sliders.create', ['slider' => 'add_user_slider'])
-    @livewire('pages.admin.user.sliders.edit', ['slider' => 'edit_user_slider'])
-    @livewire('pages.admin.user.modals.delete', ['modal' => 'delete_user_modal'])
+
+    <livewire:pages.admin.user.sliders.create slider="add_user_slider" />
+    <livewire:pages.admin.user.sliders.edit slider="edit_user_slider" />
+    <livewire:pages.admin.user.modals.delete modal="delete_user_modal" />
 
     <script>
         document.addEventListener('alpine:init', () => {

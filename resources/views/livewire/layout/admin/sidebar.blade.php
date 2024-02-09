@@ -28,7 +28,7 @@
                 </div>
 
                 <!-- Sidebar component, swap this element with another sidebar if you like -->
-                <div class="flex flex-col gap-y-5 overflow-y-auto bg-gray-900 px-4 pb-4 ring-1 ring-white/10 w-[72px] rounded-md ml-1 my-1">
+                <div class="flex flex-col gap-y-5 overflow-y-auto bg-gray-900 px-4 pb-4 ring-1 ring-white/10 w-[72px]">
                     <div class="flex h-16 shrink-0 items-center">
                         <x-application-logo class="h-8 w-auto mx-auto fill-current text-gray-500" />
                     </div>
@@ -82,7 +82,7 @@
     <div class="fixed inset-y-0 z-50 flex w-64 flex-col" x-show="sidebar" style="display: none;">
         <!-- Sidebar component, swap this element with another sidebar if you like -->
         <div 
-            class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 rounded-md ml-1 my-1"
+            class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4"
             x-show="sidebar"
             x-transition:enter="transition ease-in-out duration-300 transform"
             x-transition:enter-start="-translate-x-full"

@@ -3,6 +3,7 @@
 namespace App\Livewire\Layout\Admin;
 
 use Livewire\Component;
+use App\Livewire\Actions\Logout;
 
 class Navbar extends Component
 {
@@ -11,6 +12,12 @@ class Navbar extends Component
     public function mount()
     {
         $this->name = auth()->user()->fullName();
+    }
+    
+    public function logout(Logout $logout) {
+        $logout();
+    
+        $this->redirect('/', navigate: false);
     }
 
     public function render()
