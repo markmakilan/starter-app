@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use App\Traits\{ActivityLog, Uuid};
 use App\Traits\User\Searchable;
+use Spatie\Activitylog\Models\Activity;
 
 class User extends Authenticatable
 {
@@ -57,5 +58,9 @@ class User extends Authenticatable
 
     public function status() {
         return $this->status == true ? 'active' : 'inactive';
+    }
+
+    public function activityLogs() {
+        return $this->morphMany(Activity::class, 'subject');
     }
 }
