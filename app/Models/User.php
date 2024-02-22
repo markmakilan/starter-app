@@ -9,12 +9,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
-use App\Traits\HasUuids;
+use App\Traits\{ActivityLog, Uuid};
 use App\Traits\User\Searchable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasUuids, Searchable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, ActivityLog, Uuid, Searchable;
 
     /**
      * The attributes that are mass assignable.

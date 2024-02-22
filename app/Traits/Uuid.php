@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Support\Str;
 
-trait HasUuids 
+trait Uuid
 {
     protected static function boot() {
         parent::boot();
