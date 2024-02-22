@@ -7,11 +7,11 @@ use App\Models\User;
 
 class UserService
 {
-    public function store($user)
+    public function store($data)
     {
         try {
-            $result = DB::transaction(function () use ($user) {
-                return ['user' => User::create($user)];
+            $result = DB::transaction(function () use ($data) {
+                return ['user' => User::create($data)];
             });
 
             return ['status' => 200, 'data' => $result];
