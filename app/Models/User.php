@@ -43,8 +43,4 @@ class User extends Authenticatable
     public function status() {
         return $this->status == true ? 'active' : 'inactive';
     }
-
-    public function activityLogs() {
-        return $this->morphMany(\Spatie\Activitylog\Models\Activity::class, 'subject');
-    }
 }
