@@ -43,7 +43,7 @@
                 </thead>
                 <tbody>
                     @forelse ($data as $user)
-                    <tr class="hover:bg-gray-50">
+                    <tr wire:key="{{ $user->id }}">
                         <x-table.td class="font-medium text-gray-900">{{ $user->fullName() }}</x-table.td>
                         <x-table.td>{{ $user->email }}</x-table.td>
                         <x-table.td>{{ $user->created_at }}</x-table.td>
