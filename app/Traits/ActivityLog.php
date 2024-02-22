@@ -12,7 +12,6 @@ trait ActivityLog
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->useLogName('system')
             ->setDescriptionForEvent(fn(string $eventName) => "This model has been {$eventName}")
             ->logAll()
             ->logOnlyDirty()
