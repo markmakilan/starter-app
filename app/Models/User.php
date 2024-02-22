@@ -9,19 +9,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
-use App\Traits\{ActivityLog, Uuid};
+use App\Traits\{Uuid, ActivityLog};
 use App\Traits\User\Searchable;
-use Spatie\Activitylog\Models\Activity;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, ActivityLog, Uuid, Searchable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, Uuid, ActivityLog, Searchable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'uuid',
         'family_name',
@@ -32,21 +26,11 @@ class User extends Authenticatable
         'status',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
@@ -61,6 +45,6 @@ class User extends Authenticatable
     }
 
     public function activityLogs() {
-        return $this->morphMany(Activity::class, 'subject');
+        return $this->morphMany(\Spatie\Activitylog\Models\Activity::class, 'subject');
     }
 }
