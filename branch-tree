@@ -1,8 +1,0 @@
-1. main - empty repository
-2. laravel/installation - initial laravel installation
-    a. laravel/livewire - initial livewire installation with laravel
-    b. laravel/tailwindcss - initial tailwindcss installation with laravel
-    c. laravel/breeze - installation of laravel breeze
-3. production - sources from #2
-    a. layout/scaffolding - layout and scaffolding
-        a.1. module/user
