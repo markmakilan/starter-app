@@ -2,7 +2,7 @@
     <div class="flex flex-col items-baseline mb-1 justify-between">
         <x-label.title>Users</x-label.title>
         <div class="flex items-center gap-2">
-            <a wire:navigate href="/admin/dashboard" class="text-xs text-gray-500">Dashboard</a>
+            <a href="/admin/dashboard" class="text-xs text-gray-500">Dashboard</a>
             <span class="text-xs text-gray-500">/</span>
             <span class="text-xs text-blue-400">Users</span>
         </div>
