@@ -38,7 +38,7 @@
                                 <ul role="list" class="space-y-1">
                                     <li>
                                         <!-- Current: "bg-gray-800 text-white", Default: "text-gray-300 hover:text-white hover:bg-gray-800" -->
-                                        <a 
+                                        <a wire:navigate 
                                             href="/admin/dashboard"
                                             class="flex gap-x-3 rounded-md p-2 text-sm text-gray-300 leading-6 font-semibold mx-4 hover:text-gray-100 hover:bg-gray-800"
                                             x-bind:class="{'bg-gray-800 text-gray-100' : current_route_name == 'admin.dashboard'}">
@@ -46,7 +46,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a 
+                                        <a wire:navigate 
                                             href="/admin/user"
                                             class="flex gap-x-3 rounded-md p-2 text-sm text-gray-300 leading-6 font-semibold mx-4 hover:text-gray-100 hover:bg-gray-800"
                                             x-bind:class="{'bg-gray-800 text-gray-100' : current_route_name == 'admin.user'}">
@@ -69,7 +69,7 @@
                                                     </label>
                                                     <ul>
                                                         <li>
-                                                            <a 
+                                                            <a wire:navigate 
                                                                 href="/admin/module"
                                                                 class="flex justify-between items-center gap-x-3 rounded-r-md px-4 py-2 text-sm text-gray-300 leading-6 font-semibold hover:text-gray-100"
                                                                 x-bind:class="{'text-gray-100' : current_route_name == 'admin.module'}">
@@ -111,7 +111,7 @@
                         <ul role="list" class="-mx-2 space-y-1">
                             <li class="mx-6">
                                 <!-- Current: "bg-gray-800 text-white", Default: "text-gray-300 hover:text-white hover:bg-gray-800" -->
-                                <a 
+                                <a wire:navigate 
                                     href="/admin/dashboard"
                                     class="flex items-center gap-x-3 rounded-md p-2 text-sm text-gray-300 leading-6 font-semibold hover:text-gray-100 hover:bg-gray-800"
                                     x-bind:class="{'bg-gray-800 text-gray-100' : current_route_name == 'admin.dashboard'}">
@@ -120,7 +120,7 @@
                                 </a>
                             </li>
                             <li class="mx-6">
-                                <a 
+                                <a wire:navigate 
                                     href="/admin/user"
                                     class="flex items-center gap-x-3 rounded-md p-2 text-sm text-gray-300 leading-6 font-semibold hover:text-gray-100 hover:bg-gray-800"
                                     x-bind:class="{'bg-gray-800 text-gray-100' : current_route_name == 'admin.user'}">
@@ -144,7 +144,7 @@
 
                                 <ul class="rounded-md overflow-hidden" x-show="open">
                                     <li>
-                                        <a 
+                                        <a wire:navigate 
                                             href="/admin/module"
                                             class="flex items-center gap-x-3 bg-gray-800 p-2 text-sm text-gray-300 leading-6 font-semibold hover:text-gray-100"
                                             x-bind:class="{'text-gray-100' : current_route_name == 'admin.module'}">
