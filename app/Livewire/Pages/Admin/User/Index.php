@@ -47,7 +47,7 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.pages.admin.user.index')->extends('layouts.admin.app')->with([
+        return view('livewire.pages.admin.user.index')->with([
             'data' => User::search($this->filters)->paginate(10)
         ]);
     }
