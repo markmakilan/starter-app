@@ -4,7 +4,6 @@ namespace App\Livewire\Pages\Admin\User;
 
 use Livewire\{Component, WithPagination};
 use App\Models\User;
-use App\Services\UserService;
 
 class Index extends Component
 {

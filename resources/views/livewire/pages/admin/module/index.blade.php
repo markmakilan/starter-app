@@ -39,9 +39,26 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse ($data as $module)
+                    <tr wire:key="{{ $module->id }}">
+                        <x-table.td class="font-medium text-gray-900">{{ $module->name }}</x-table.td>
+                        <x-table.td>
+                            <span @class(['capitalize text-xs text-gray-100 rounded-full px-2 py-0.5', 'bg-green-700' => $module->status() == 'active', 'bg-red-700' => $module->status() == 'inactive'])>
+                                {{ $module->status() }}
+                            </span>
+                        </x-table.td>
+                        <x-table.td>
+                            <div class="flex gap-2">
+                                <span class="cursor-pointer text-blue-700 hover:text-blue-900" wire:click="edit('{{ $module->uuid }}')">Edit</span>
+                                <span class="cursor-pointer text-red-700 hover:text-red-900" wire:click="delete('{{ $module->uuid }}')">Delete</span>
+                            </div>
+                        </x-table.td>
+                    </tr>
+                    @empty
                     <tr>
                         <x-table.td>No data available</x-table.td>
                     </tr>
+                    @endforelse
                 </tbody>
             </x-table.table>
         </x-ui.card>
