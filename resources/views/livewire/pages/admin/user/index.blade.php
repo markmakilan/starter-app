@@ -1,5 +1,5 @@
 <div x-data="data">
-    <div class="flex flex-col items-baseline mb-1 justify-between">
+    <div class="flex flex-col items-baseline mb-2 justify-between">
         <x-label.title>Users</x-label.title>
         <div class="flex items-center gap-2">
             <a href="/admin/dashboard" class="text-xs text-gray-500">Dashboard</a>
@@ -25,7 +25,7 @@
                 </x-input.select>
             </x-div.grid-col>
             <x-div.grid-col class="md:col-span-2">
-                <x-button.primary class="w-full" x-on:click="add_user_slider = true">New</x-button.primary>
+                <x-button.primary class="w-full" x-on:click="add_user_slider = true">Create</x-button.primary>
             </x-div.grid-col>
         </x-div.grid>
 
@@ -38,7 +38,7 @@
                         <x-table.th>Created Date</x-table.th>
                         <x-table.th>Last Updated</x-table.th>
                         <x-table.th>Status</x-table.th>
-                        <x-table.th>Action</x-table.th>
+                        <x-table.th width="100">Action</x-table.th>
                     </tr>
                 </thead>
                 <tbody>
