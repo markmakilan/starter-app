@@ -15,6 +15,7 @@ class Module extends Model
         'uuid',
         'name',
         'display_name',
+        'description',
         'status',
     ];
 
