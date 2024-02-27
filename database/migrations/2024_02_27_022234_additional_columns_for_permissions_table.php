@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::table('permissions', function (Blueprint $table) {
             $table->unsignedBigInteger('module_id');
+            $table->unsignedBigInteger('permission_category_id');
             $table->string('display_name');
-            $table->string('category');
+            $table->boolean('status')->default(true);
         });
     }
 
@@ -25,8 +26,9 @@ return new class extends Migration
     {
         Schema::table('permissions', function (Blueprint $table) {
             $table->dropColumn('module_id');
+            $table->dropColumn('permission_category_id');
             $table->dropColumn('display_name');
-            $table->dropColumn('category');
+            $table->dropColumn('status');
         });
     }
 };

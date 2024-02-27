@@ -4,6 +4,7 @@ namespace App\Livewire\Pages\Admin\Module\Sliders;
 
 use Livewire\Component;
 use App\Services\ModuleService;
+use App\Models\Option;
 
 class Create extends Component
 {
@@ -35,12 +36,7 @@ class Create extends Component
             'description' => null
         ];
 
-        $this->categories = [
-            'basic' => 'Basic',
-            'field' => 'Fields',
-            'tab' => 'Tabs',
-            'other' => 'Other',
-        ];
+        $this->categories = $this->options()->get();
 
         $this->addPermission();
     }
@@ -49,16 +45,16 @@ class Create extends Component
     {
         $keys = explode('.', $key);
 
-        if ($keys[1] == 'category') {
-            $this->permissions[$key[0]]['items'][] = ['name' => null];
+        if ($keys[1] == 'permission_category_id') {
+            $this->permissions[$key[0]]['items'] = [['name' => null]];
         }
     }
 
     public function addPermission()
     {
         $this->permissions[] = [
-            'category' => null,
-            'items' => []
+            'permission_category_id' => null,
+            'items' => [['name' => null]]
         ];
     }
 
@@ -75,6 +71,14 @@ class Create extends Component
     public function removeItem($permission_key, $key)
     {
         unset($this->permissions[$permission_key]['items'][$key]);
+    }
+
+    public function options() 
+    {
+        return Option::where(function ($query) {
+            $query->where('status', true);
+            $query->where('category', 'permission_category');
+        });  
     }
 
     public function save(ModuleService $service)

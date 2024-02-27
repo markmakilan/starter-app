@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\Attributes\On;
 use Illuminate\Validation\Rule;
 use App\Services\ModuleService;
+use App\Models\Option;
 
 class Edit extends Component
 {
@@ -35,12 +36,7 @@ class Edit extends Component
 
     public function mount()
     {
-        $this->categories = [
-            'basic' => 'Basic',
-            'field' => 'Fields',
-            'tab' => 'Tabs',
-            'other' => 'Other',
-        ];
+        $this->categories = $this->options()->get();;
     }
 
     #[On('edit-module')]
@@ -50,12 +46,20 @@ class Edit extends Component
 
         foreach ($module['permissions'] as $key => $permission) {
 
-            if (isset($this->permissions[$permission['category']]) === false) {
-                $this->permissions[$permission['category']] = ['category' => $permission['category'], 'items' => []];
+            if (isset($this->permissions[$permission['permission_category_id']]) === false) {
+                $permission_category = $this->options()->where('id', $permission['permission_category_id'])->first();
+                
+                $this->permissions[$permission_category->id] = [
+                    'permission_category_id' => $permission_category->id,
+                    'permission_category_name' => $permission_category->name,
+                    'status' => true
+                ];
             }
 
-            $this->permissions[$permission['category']]['items'][$permission['id']] = [
-                'name' => $permission['display_name']
+            $this->permissions[$permission['permission_category_id']]['items'][$permission['id']] = [
+                'permission_id' => $permission['id'],
+                'name' => $permission['display_name'],
+                'status' => $permission['status'] == 1 ? true : false
             ];
         }
 
@@ -66,15 +70,15 @@ class Edit extends Component
     {
         $keys = explode('.', $key);
 
-        if ($keys[1] == 'category') {
-            $this->permissions[$key[0]]['items'][] = ['id' => null, 'name' => null];
+        if ($keys[1] == 'permission_category_id') {
+            $this->permissions[$key[0]]['items'][] = ['name' => null];
         }
     }
 
     public function addPermission()
     {
         $this->permissions[] = [
-            'category' => null,
+            'permission_category_id' => null,
             'items' => []
         ];
     }
@@ -93,14 +97,20 @@ class Edit extends Component
     {
         unset($this->permissions[$permission_key]['items'][$key]);
     }
+
+    public function options() 
+    {
+        return Option::where(function ($query) {
+            $query->where('status', true);
+            $query->where('category', 'permission_category');
+        });  
+    }
     
     public function update(ModuleService $service)
-    {
-        dd($this);
-        
+    {   
         $this->validate();
         
-        $response = $service->update($this->module);
+        $response = $service->update($this->module, $this->permissions);
 
         if ($response['status'] === 200) {
             $this->redirect('/admin/module'); 

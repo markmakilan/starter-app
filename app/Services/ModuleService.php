@@ -23,9 +23,9 @@ class ModuleService
                     foreach ($permission['items'] as $item) {
                         Permission::create([
                             'module_id' => $module->id,
+                            'permission_category_id' => $permission['permission_category_id'],
                             'name' => str_replace(' ', '_', strtolower($item['name'])) . '_' . $module->name,
                             'display_name' => ucwords($item['name']),
-                            'category' => $permission['category']
                         ]);
                     }
                 }
@@ -39,13 +39,35 @@ class ModuleService
         }
     }
 
-    public function update($data)
+    public function update($data, $permissions = [])
     {
         try {
-            $result = DB::transaction(function () use ($data) {
+            $result = DB::transaction(function () use ($data, $permissions) {
                 $module = Module::find($data['id']);
+
+                if ($module) {
+                    $module->update($data);
+
+                    foreach ($permissions as $permission) {
+
+                        foreach ($permission['items'] as $item) {
+                            
+                            if (isset($item['permission_id']) == true) {
+                                $permission = Permission::find($item['permission_id'])->update(['status' => $item['status']]);
+                            }
+                            else {
+                                Permission::create([
+                                    'module_id' => $module->id,
+                                    'permission_category_id' => $permission['permission_category_id'],
+                                    'name' => str_replace(' ', '_', strtolower($item['name'])) . '_' . $module->name,
+                                    'display_name' => ucwords($item['name']),
+                                ]);
+                            }
+                        }
+                    }
+                }
                 
-                return ['module' => $module ? $module->update($data) : false];
+                return ['module' => $module];
             });
 
             return ['status' => 200, 'data' => $result];

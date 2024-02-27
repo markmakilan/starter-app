@@ -34,12 +34,18 @@
                     <div class="space-y-3" wire:key="edit-permission-{{ $permission_key }}">
                         <div class="border rounded-md overflow-hidden divide-y">
                             <div class="flex items-center">
-                                <select class="w-full text-xs border-none focus:ring-0" wire:model.live="permissions.{{ $permission_key }}.category">
+                                @isset($permission['permission_category_name'])
+                                <label class="flex items-center gap-1 px-3 py-2" for="permission_category_id-{{ $permission['permission_category_id'] }}">
+                                    <input type="checkbox" id="permission_category_id-{{ $permission['permission_category_id'] }}" wire:model.live="permissions.{{ $permission_key }}.status">
+                                    <span class="text-xs">{{ $permission['permission_category_name'] }}</span>
+                                </label>
+                                @else
+                                <select class="w-full text-xs border-none focus:ring-0" wire:model.live="permissions.{{ $permission_key }}.permission_category_id">
                                     <option value="" selected hidden>Select</option>
 
-                                    @foreach ($categories as $key => $category)
-                                        @if (data_get($permissions, $permission_key.'.category') == $key || in_array($key, data_get($permissions, '*.category')) == false)
-                                        <option value="{{ $key }}">{{ $category }}</option>
+                                    @foreach ($categories as $category)
+                                        @if (data_get($permissions, $permission_key.'.permission_category_id') == $category->id || in_array($category->id, data_get($permissions, '*.permission_category_id')) == false)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -50,12 +56,19 @@
                                     <x-icon.close class="w-2.5 h-2.5" fill="currentColor" wire:target="removePermission({{ $permission_key }})" wire:loading.remove />
                                 </button>
                                 @endif
+                                @endisset
                             </div>
         
                             @if ($permission['items'])
                             <div class="space-y-1 px-3 py-2">
                                 @foreach ($permission['items'] as $item_key => $item)
                                 <div class="space-y-2" wire:key="edit-item-{{ $item_key }}">
+                                    @isset($item['permission_id'])
+                                    <label class="flex items-center gap-1" for="item-{{ $item_key }}">
+                                        <input type="checkbox" id="item-{{ $item_key }}" wire:model="permissions.{{ $permission_key }}.items.{{ $item_key }}.status">
+                                        <span class="text-xs">{{ $item['name'] }}</span>
+                                    </label>
+                                    @else
                                     <div class="flex gap-1">
                                         <x-input.input placeholder="Name" wire:model="permissions.{{ $permission_key }}.items.{{ $item_key }}.name" />
 
@@ -66,6 +79,7 @@
                                         </button>
                                         @endif
                                     </div>
+                                    @endisset
 
                                     @if ($loop->last)
                                     <button 

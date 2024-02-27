@@ -26,12 +26,12 @@
                     <div class="space-y-3" wire:key="create-permission-{{ $permission_key }}">
                         <div class="border rounded-md overflow-hidden divide-y">
                             <div class="flex items-center">
-                                <select class="w-full text-xs border-none focus:ring-0" wire:model.live="permissions.{{ $permission_key }}.category">
+                                <select class="w-full text-xs border-none focus:ring-0" wire:model.live="permissions.{{ $permission_key }}.permission_category_id">
                                     <option value="" selected hidden>Select</option>
 
-                                    @foreach ($categories as $key => $category)
-                                        @if (data_get($permissions, $permission_key.'.category') == $key || in_array($key, data_get($permissions, '*.category')) == false)
-                                        <option value="{{ $key }}">{{ $category }}</option>
+                                    @foreach ($categories as $category)
+                                        @if (data_get($permissions, $permission_key.'.permission_category_id') == $category->id || in_array($category->id, data_get($permissions, '*.permission_category_id')) == false)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endif
                                     @endforeach
                                 </select>
