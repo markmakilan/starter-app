@@ -8,7 +8,10 @@ use App\Services\ModuleService;
 class Create extends Component
 {
     public $slider;
-    public $module = [];
+    public $module = [
+        'name' => null,
+        'display_name' => null
+    ];
 
     public function rules()
     {
@@ -21,14 +24,6 @@ class Create extends Component
     {
         return [
             'module.display_name' => 'name',
-        ];
-    }
-
-    public function mount()
-    {
-        $this->module = [
-            'name' => null,
-            'display_name' => null
         ];
     }
 
