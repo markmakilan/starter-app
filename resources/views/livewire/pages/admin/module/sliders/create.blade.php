@@ -11,6 +11,14 @@
                     <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
                     @enderror
                 </div>
+                <div class="space-y-0.5">
+                    <x-label.label>Description</x-label.label>
+                    <x-input.textarea wire:model="module.description"></x-input.textarea>
+
+                    @error('module.description')
+                    <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                    @enderror
+                </div>
             </div>
         </x-slot>
         <x-slot name="action">

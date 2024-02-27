@@ -10,13 +10,15 @@ class Create extends Component
     public $slider;
     public $module = [
         'name' => null,
-        'display_name' => null
+        'display_name' => null,
+        'description' => null
     ];
 
     public function rules()
     {
         return [
-            'module.display_name' => ['required', 'alpha']
+            'module.display_name' => ['required'],
+            'module.description' => ['nullable']
         ];
     }
 
@@ -24,6 +26,7 @@ class Create extends Component
     {
         return [
             'module.display_name' => 'name',
+            'module.description' => 'description',
         ];
     }
 

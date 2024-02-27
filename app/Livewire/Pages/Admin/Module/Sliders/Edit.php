@@ -17,6 +17,7 @@ class Edit extends Component
         return [
             'module.id' => ['required', 'exists:modules,id'],
             'module.display_name' => ['required'],
+            'module.description' => ['nullable'],
             'module.status' => ['boolean'],
         ];
     }
@@ -25,6 +26,7 @@ class Edit extends Component
     {
         return [
             'module.display_name' => 'name',
+            'module.description' => 'description',
             'module.status' => 'status',
         ];
     }
