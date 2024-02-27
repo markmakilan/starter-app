@@ -34,6 +34,7 @@
                 <thead>
                     <tr>
                         <x-table.th>Name</x-table.th>
+                        <x-table.th>Description</x-table.th>
                         <x-table.th>Status</x-table.th>
                         <x-table.th width="100">Action</x-table.th>
                     </tr>
@@ -42,6 +43,7 @@
                     @forelse ($data as $module)
                     <tr wire:key="{{ $module->id }}">
                         <x-table.td class="font-medium text-gray-900">{{ $module->display_name }}</x-table.td>
+                        <x-table.td class="font-medium text-gray-900">{{ $module->description }}</x-table.td>
                         <x-table.td>
                             <span @class(['capitalize text-xs text-gray-100 rounded-full px-2 py-0.5', 'bg-green-700' => $module->status() == 'active', 'bg-red-700' => $module->status() == 'inactive'])>
                                 {{ $module->status() }}
