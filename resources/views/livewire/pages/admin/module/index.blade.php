@@ -65,11 +65,15 @@
     </div>
 
     <livewire:pages.admin.module.sliders.create slider="add_module_slider" />
+    <livewire:pages.admin.module.sliders.edit slider="edit_module_slider" />
+    <livewire:pages.admin.module.modals.delete modal="delete_module_modal" />
 
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('data', () => ({
                 add_module_slider: false,
+                edit_module_slider: @entangle('components.edit_module_slider').live,
+                delete_module_modal: @entangle('components.delete_module_modal').live,
             }))
         })
     </script>
