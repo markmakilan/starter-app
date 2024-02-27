@@ -3,15 +3,34 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Permission;
 use App\Models\Module;
 
 class ModuleService
 {
-    public function store($data)
+    public function store($module, $permissions = [])
     {
         try {
-            $result = DB::transaction(function () use ($data) {
-                return ['module' => Module::create($data)];
+            $result = DB::transaction(function () use ($module, $permissions) {
+                $module = array_merge($module, [
+                    'name' => str_replace(' ', '_', strtolower($module['display_name']))
+                ]);
+
+                $module = Module::create($module);
+
+                foreach ($permissions as $permission) {
+
+                    foreach ($permission['items'] as $item) {
+                        Permission::create([
+                            'module_id' => $module->id,
+                            'name' => str_replace(' ', '_', strtolower($item['name'])) . '_' . $module->name,
+                            'display_name' => ucwords($item['name']),
+                            'category' => $permission['category']
+                        ]);
+                    }
+                }
+
+                return ['module' => $module];
             });
 
             return ['status' => 200, 'data' => $result];

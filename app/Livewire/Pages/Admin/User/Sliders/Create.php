@@ -8,13 +8,7 @@ use App\Services\UserService;
 class Create extends Component
 {
     public $slider;
-    public $user = [
-        'given_name' => null,
-        'middle_name' => null,
-        'family_name' => null,
-        'email' => null,
-        'password' => null
-    ];
+    public $user = [];
 
     public function rules()
     {
@@ -35,6 +29,17 @@ class Create extends Component
             'user.family_name' => 'last name',
             'user.email' => 'email',
             'user.password' => 'password',
+        ];
+    }
+
+    public function mount()
+    {
+        $this->user = [
+            'given_name' => null,
+            'middle_name' => null,
+            'family_name' => null,
+            'email' => null,
+            'password' => null
         ];
     }
 

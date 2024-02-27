@@ -29,7 +29,7 @@ class Index extends Component
         $module = Module::where('uuid', $uuid);
         
         if ($module->count() == 1) {
-            $this->dispatch('edit-module', module: $module->first());
+            $this->dispatch('edit-module', module: $module->with('permissions')->first());
             $this->components['edit_module_slider'] = true;
         }
     }

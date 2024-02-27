@@ -8,11 +8,9 @@ use App\Services\ModuleService;
 class Create extends Component
 {
     public $slider;
-    public $module = [
-        'name' => null,
-        'display_name' => null,
-        'description' => null
-    ];
+    public $module = [];
+    public $permissions = [];
+    public $categories = [];
 
     public function rules()
     {
@@ -30,16 +28,60 @@ class Create extends Component
         ];
     }
 
-    public function updatedModuleDisplayName($value)
+    public function mount()
     {
-        $this->module['name'] = str_replace(' ', '_', strtolower($value));
+        $this->module = [
+            'display_name' => null,
+            'description' => null
+        ];
+
+        $this->categories = [
+            'basic' => 'Basic',
+            'field' => 'Fields',
+            'tab' => 'Tabs',
+            'other' => 'Other',
+        ];
+
+        $this->addPermission();
+    }
+
+    public function updatedPermissions($value, $key)
+    {
+        $keys = explode('.', $key);
+
+        if ($keys[1] == 'category') {
+            $this->permissions[$key[0]]['items'][] = ['name' => null];
+        }
+    }
+
+    public function addPermission()
+    {
+        $this->permissions[] = [
+            'category' => null,
+            'items' => []
+        ];
+    }
+
+    public function removePermission($key)
+    {
+        unset($this->permissions[$key]);
+    }
+
+    public function addItem($key)
+    {
+        $this->permissions[$key]['items'][] = ['name' => null];
+    }
+
+    public function removeItem($permission_key, $key)
+    {
+        unset($this->permissions[$permission_key]['items'][$key]);
     }
 
     public function save(ModuleService $service)
     {
         $this->validate();
-        
-        $response = $service->store($this->module);
+
+        $response = $service->store($this->module, $this->permissions);
 
         if ($response['status'] === 200) {
             $this->redirect('/admin/module'); 
