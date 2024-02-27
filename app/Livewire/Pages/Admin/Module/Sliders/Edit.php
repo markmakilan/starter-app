@@ -16,7 +16,7 @@ class Edit extends Component
     {
         return [
             'module.id' => ['required', 'exists:modules,id'],
-            'module.display_name' => ['required', 'alpha'],
+            'module.display_name' => ['required'],
             'module.status' => ['boolean'],
         ];
     }
