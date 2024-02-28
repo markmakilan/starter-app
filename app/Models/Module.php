@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
-use Spatie\Permission\Models\Permission;
 use App\Traits\{Uuid, ActivityLog};
 use App\Traits\Module\Searchable;
 

@@ -3,8 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Permission;
-use App\Models\Module;
+use App\Models\{Module, Permission};
 
 class ModuleService
 {

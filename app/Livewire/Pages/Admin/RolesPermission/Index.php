@@ -3,8 +3,7 @@
 namespace App\Livewire\Pages\Admin\RolesPermission;
 
 use Livewire\Component;
-use Spatie\Permission\Models\Role;
-use App\Models\Module;
+use App\Models\{Module, Role};
 
 class Index extends Component
 {
