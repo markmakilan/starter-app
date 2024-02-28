@@ -11,7 +11,7 @@
     <div class="space-y-3">
         <x-div.grid>
             <x-div.grid-col class="md:col-span-2">
-                <x-button.primary class="w-full" x-on:click="add_module_slider = true">Create</x-button.primary>
+                <x-button.primary class="w-full" x-on:click="add_role_slider = true">Create</x-button.primary>
             </x-div.grid-col>
         </x-div.grid>
     </div>
