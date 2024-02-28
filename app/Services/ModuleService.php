@@ -52,8 +52,8 @@ class ModuleService
 
                         foreach ($permission['items'] as $item) {
                             
-                            if (isset($item['permission_id']) == true) {
-                                $permission = Permission::find($item['permission_id'])->update(['status' => $item['status']]);
+                            if (isset($item['permission_id'])) {
+                                Permission::find($item['permission_id'])->update(['status' => $item['status']]);
                             }
                             else {
                                 Permission::create([
