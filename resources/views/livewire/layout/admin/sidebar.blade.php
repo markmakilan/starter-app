@@ -76,6 +76,14 @@
                                                                 <span>Modules</span>
                                                             </a>
                                                         </li>
+                                                        <li>
+                                                            <a 
+                                                                href="/admin/roles-permission"
+                                                                class="flex justify-between items-center gap-x-3 rounded-r-md px-4 py-2 text-sm text-gray-300 leading-6 font-semibold hover:text-gray-100"
+                                                                x-bind:class="{'text-gray-100' : current_route_name == 'admin.roles-permission'}">
+                                                                <span>Roles and Permission</span>
+                                                            </a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                             </ul>
