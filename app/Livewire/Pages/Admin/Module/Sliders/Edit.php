@@ -42,21 +42,21 @@ class Edit extends Component
     #[On('edit-module')]
     public function module($module)
     {
-        $this->permissions = [];
+        $permissions = [];
 
         foreach ($module['permissions'] as $key => $permission) {
 
-            if (isset($this->permissions[$permission['permission_category_id']]) === false) {
+            if (isset($permissions[$permission['permission_category_id']]) === false) {
                 $permission_category = $this->options()->where('id', $permission['permission_category_id'])->first();
                 
-                $this->permissions[$permission_category->id] = [
+                $permissions[$permission_category->id] = [
                     'permission_category_id' => $permission_category->id,
                     'permission_category_name' => $permission_category->name,
                     'status' => true
                 ];
             }
 
-            $this->permissions[$permission['permission_category_id']]['items'][$permission['id']] = [
+            $permissions[$permission['permission_category_id']]['items'][$permission['id']] = [
                 'permission_id' => $permission['id'],
                 'name' => $permission['display_name'],
                 'status' => $permission['status'] == 1 ? true : false
@@ -64,6 +64,7 @@ class Edit extends Component
         }
 
         $this->module = $module;
+        $this->permissions = $permission;
     }
 
     public function updatedPermissions($value, $key)
